@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+    <h2>Application Status</h2>
+    {% if evaluations %}
+    <p>ATS Score: {{ evaluations[0].ats_score }}%</p>
+    <p>Match Score: {{ evaluations[0].match_score }}%</p>
+    <p>Recommendation: {{ evaluations[0].recommendation }}</p>
+    {% else %}
+    <p>No results yet.</p>
+    {% endif %}
+</section>
+{% endblock %}

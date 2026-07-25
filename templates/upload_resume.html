@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card form-card">
+    <h2>Upload Resume</h2>
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label>Select Resume</label>
+        <input type="file" name="resume" accept=".pdf,.docx" required>
+        <button class="btn btn-primary" type="submit">Upload</button>
+    </form>
+</section>
+{% endblock %}

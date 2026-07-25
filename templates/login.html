@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="auth-shell">
+    <div class="auth-card">
+        <div class="auth-header">
+            <p class="eyebrow">Welcome back</p>
+            <h2>Login</h2>
+            <p>Access your dashboard and continue matching with the right opportunities.</p>
+        </div>
+
+        <form class="auth-form" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Sign In</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

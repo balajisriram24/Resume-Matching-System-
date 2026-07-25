@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="cards-grid">
+    <div class="card stat-card"><h3>Average ATS</h3><p>{{ metrics.average_ats_score }}%</p></div>
+    <div class="card stat-card"><h3>Average Match</h3><p>{{ metrics.average_match_score }}%</p></div>
+    <div class="card stat-card"><h3>Jobs</h3><p>{{ jobs|length }}</p></div>
+</section>
+<section class="card">
+    <canvas id="analyticsChart"></canvas>
+</section>
+<script>
+const ctx = document.getElementById('analyticsChart');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Candidates', 'Resumes', 'Jobs'],
+    datasets: [{ label: 'System Overview', data: [{{ candidates|length }}, {{ resumes|length }}, {{ jobs|length }}], backgroundColor: ['#1f4f8f', '#2e6fdb', '#64a4ff'] }]
+  },
+  options: { responsive: true }
+});
+</script>
+{% endblock %}

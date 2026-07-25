@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Resume Matching System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="{% if request.endpoint == 'home' %}landing-body{% else %}app-body{% endif %}">
+    {% if request.endpoint == 'home' %}
+        <div class="landing-page">
+            <header class="sticky-nav">
+                <a class="brand-mark" href="{{ url_for('home') }}"><span>Resume</span>Match</a>
+                <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+                <nav class="nav-links">
+                    <a href="#platform">Platform</a>
+                    <a href="#workflow">How It Works</a>
+                    <a href="{{ url_for('jobs') }}">Jobs</a>
+                    <a href="#contact">Contact</a>
+                    <a class="nav-cta" href="{{ url_for('register') }}">Join Now</a>
+                </nav>
+            </header>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-stack landing-flash">
+                        {% for category, message in messages %}
+                            <div class="flash flash-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <div class="content-wrapper">
+    {% else %}
+        <div class="page-shell">
+            <aside class="sidebar">
+                <div class="brand">Resume Match</div>
+                <nav>
+                    {% if current_user and current_user.role == 'admin' %}
+                        <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+                        <a href="{{ url_for('admin_candidates') }}">Candidates</a>
+                        <a href="{{ url_for('admin_hr_users') }}">HR Users</a>
+                        <a href="{{ url_for('admin_job_descriptions') }}">Jobs</a>
+                        <a href="{{ url_for('admin_resumes') }}">Resumes</a>
+                    {% elif current_user and current_user.role == 'hr' %}
+                        <a href="{{ url_for('hr_dashboard') }}">Dashboard</a>
+                        <a href="{{ url_for('upload_job') }}">Create Job</a>
+                        <a href="{{ url_for('ranking') }}">Ranking</a>
+                        <a href="{{ url_for('analytics') }}">Analytics</a>
+                        <a href="{{ url_for('reports') }}">Reports</a>
+                    {% elif current_user and current_user.role == 'candidate' %}
+                        <a href="{{ url_for('candidate_dashboard') }}">Dashboard</a>
+                        <a href="{{ url_for('upload_resume') }}">Upload Resume</a>
+                        <a href="{{ url_for('jobs') }}">Jobs</a>
+                        <a href="{{ url_for('profile') }}">Profile</a>
+                        <a href="{{ url_for('application_status') }}">Status</a>
+                    {% else %}
+                        <a href="{{ url_for('home') }}">Home</a>
+                        <a href="{{ url_for('about') }}">About</a>
+                        <a href="{{ url_for('contact') }}">Contact</a>
+                    {% endif %}
+                </nav>
+            </aside>
+            <main class="main-content">
+                <header class="topbar">
+                    <div></div>
+                    <div class="topbar-actions">
+                        {% if current_user %}
+                            <span class="user-pill">{{ current_user.username }} · {{ current_user.role }}</span>
+                            <a class="btn btn-outline" href="{{ url_for('logout') }}">Logout</a>
+                        {% else %}
+                            <a class="btn btn-outline" href="{{ url_for('login') }}">Login</a>
+                            <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
+                        {% endif %}
+                    </div>
+                </header>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="flash-stack">
+                            {% for category, message in messages %}
+                                <div class="flash flash-{{ category }}">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+
+                <div class="content-wrapper">
+    {% endif %}
+
+    {% block content %}{% endblock %}
+
+    {% if request.endpoint == 'home' %}
+            </div>
+
+            <footer class="landing-footer" id="contact">
+                <p>© 2026 ResumeMatch. Trusted by modern HR teams.</p>
+            </footer>
+        </div>
+    {% else %}
+                </div>
+            </main>
+        </div>
+    {% endif %}
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

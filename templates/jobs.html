@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="job-portal">
+    <div class="job-portal-header">
+        <div>
+            <p class="eyebrow">Job portal</p>
+            <h2>Explore open opportunities</h2>
+            <p>Browse curated job postings and discover roles that match your profile.</p>
+        </div>
+        {% if not current_user %}
+            <a class="btn btn-primary" href="{{ url_for('register') }}">Create profile</a>
+        {% endif %}
+    </div>
+
+    {% if jobs %}
+        <div class="job-grid">
+            {% for job in jobs %}
+                <article class="job-card">
+                    <div class="job-card-top">
+                        <span class="job-badge">{{ job.company_name }}</span>
+                        <h3>{{ job.job_title }}</h3>
+                    </div>
+                    <p class="job-meta">Required skills: {{ job.required_skills }}</p>
+                    <p class="job-meta">Experience: {{ job.required_experience }}</p>
+                    <p class="job-description">{{ job.full_description }}</p>
+                    <div class="job-card-actions">
+                        {% if current_user and current_user.role == 'candidate' %}
+                            <form action="{{ url_for('apply_job', job_id=job.id) }}" method="post">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                                <button class="btn btn-primary" type="submit">Apply</button>
+                            </form>
+                        {% elif current_user %}
+                            <span class="job-note">Only candidates can apply for this role.</span>
+                        {% else %}
+                            <a class="btn btn-primary" href="{{ url_for('login') }}">Login to Apply</a>
+                        {% endif %}
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <h3>No jobs posted yet</h3>
+            <p>Check back soon for the latest openings.</p>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

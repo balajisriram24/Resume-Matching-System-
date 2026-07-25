@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="auth-shell">
+    <div class="auth-card">
+        <div class="auth-header">
+            <p class="eyebrow">HR portal</p>
+            <h2>Create Job Description</h2>
+            <p>Add a new opportunity with skills, experience, and a complete role summary.</p>
+        </div>
+
+        <form class="auth-form" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="job_title">Job Title</label>
+                    <input id="job_title" type="text" name="job_title" placeholder="e.g. Product Manager" required>
+                </div>
+                <div class="form-group">
+                    <label for="company_name">Company Name</label>
+                    <input id="company_name" type="text" name="company_name" placeholder="e.g. ResumeMatch" required>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="required_skills">Required Skills</label>
+                    <input id="required_skills" type="text" name="required_skills" placeholder="e.g. Python, SQL, Communication" required>
+                </div>
+                <div class="form-group">
+                    <label for="required_experience">Required Experience</label>
+                    <input id="required_experience" type="text" name="required_experience" placeholder="e.g. 3+ years" required>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="full_description">Complete Job Description</label>
+                <textarea id="full_description" name="full_description" rows="6" placeholder="Describe the role, responsibilities, and company culture." required></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Save Job</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

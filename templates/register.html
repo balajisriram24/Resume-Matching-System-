@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="auth-shell">
+    <div class="auth-card">
+        <div class="auth-header">
+            <p class="eyebrow">Join our talent network</p>
+            <h2>Candidate Registration</h2>
+            <p>Create a professional profile and unlock AI-powered resume matching.</p>
+        </div>
+
+        <form class="auth-form" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="full_name">Full Name</label>
+                    <input id="full_name" type="text" name="full_name" placeholder="e.g. Jane Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input id="phone" type="text" name="phone" placeholder="e.g. +1 234 567 890" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" name="password" placeholder="Create a strong password" required>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="skills">Skills</label>
+                <input id="skills" type="text" name="skills" placeholder="Python, SQL, Product Design" required>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="education">Education</label>
+                    <input id="education" type="text" name="education" placeholder="Bachelor of Computer Science" required>
+                </div>
+                <div class="form-group">
+                    <label for="experience">Experience</label>
+                    <input id="experience" type="text" name="experience" placeholder="3 years in data analysis" required>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="resume">Resume Upload (PDF/DOCX)</label>
+                <input id="resume" type="file" name="resume" accept=".pdf,.docx">
+                <span class="auth-help">Upload your resume to enable ATS and skill matching.</span>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Register</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

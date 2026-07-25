@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+    <div class="section-heading">
+        <h2>Job Descriptions</h2>
+        <a class="btn btn-primary" href="{{ url_for('upload_job') }}">Add Jobs</a>
+    </div>
+
+    {% if jobs %}
+        <div class="stack-list">
+            {% for job in jobs %}
+            <div class="list-item job-list-item">
+                <div>
+                    <strong>{{ job.job_title }}</strong>
+                    <p>{{ job.company_name }} • {{ job.required_skills }}</p>
+                    <small>{{ job.required_experience }}</small>
+                </div>
+                <div class="job-description-actions">
+                    <a class="btn btn-secondary" href="{{ url_for('hr_job_applicants', job_id=job.id) }}">View Applicants</a>
+                    <form method="post" action="{{ url_for('delete_job_route', job_id=job.id) }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                        <button class="btn btn-outline" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <h3>No jobs added yet</h3>
+            <p>Create your first opening to start matching candidates.</p>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

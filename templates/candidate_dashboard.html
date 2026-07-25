@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+    <h2>Welcome, {{ candidate.full_name }}</h2>
+    <p>Skills: {{ candidate.skills }}</p>
+    <p>Experience: {{ candidate.experience }}</p>
+</section>
+<section class="card">
+    <h3>Latest Evaluation</h3>
+    {% if evaluations %}
+    <p>ATS Score: {{ evaluations[0].ats_score }}%</p>
+    <p>Match Score: {{ evaluations[0].match_score }}%</p>
+    <p>Recommendation: {{ evaluations[0].recommendation }}</p>
+    {% else %}
+    <p>No evaluations yet. Upload a resume to see results.</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="cards-grid">
+    <div class="card stat-card"><h3>Total Candidates</h3><p>{{ metrics.total_candidates }}</p></div>
+    <div class="card stat-card"><h3>Total Resumes</h3><p>{{ metrics.total_resumes }}</p></div>
+    <div class="card stat-card"><h3>Open Jobs</h3><p>{{ metrics.total_jobs }}</p></div>
+</section>
+<section class="card">
+    <div class="section-heading">
+        <h3>Job Descriptions</h3>
+    </div>
+    {% if jobs %}
+        <div class="stack-list">
+            {% for job in jobs %}
+            <div class="list-item job-list-item">
+                <div>
+                    <strong>{{ job.job_title }}</strong>
+                    <p>{{ job.company_name }} • {{ job.required_skills }}</p>
+                    <small>{{ job.required_experience }}</small>
+                </div>
+                <a class="btn btn-secondary" href="{{ url_for('hr_job_applicants', job_id=job.id) }}">View Applicants</a>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <h3>No jobs available</h3>
+            <p>Create a role to start collecting applications.</p>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

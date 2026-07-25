@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+    <h2>Reports</h2>
+    <div class="actions">
+        <a class="btn btn-primary" href="{{ url_for('export_csv') }}">Export CSV</a>
+        <a class="btn btn-outline" href="{{ url_for('export_pdf') }}">Export PDF</a>
+    </div>
+    <table>
+        <thead><tr><th>Candidate</th><th>Recommendation</th><th>Skills</th></tr></thead>
+        <tbody>
+            {% for resume in resumes %}
+            <tr>
+                <td>{{ resume.full_name }}</td>
+                <td>Pending</td>
+                <td>{{ resume.filename }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

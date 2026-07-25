@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+    <h2>Resumes</h2>
+    <table>
+        <thead><tr><th>Candidate</th><th>Filename</th><th>Actions</th></tr></thead>
+        <tbody>
+            {% for resume in resumes %}
+            <tr>
+                <td>{{ resume.full_name }}</td>
+                <td>{{ resume.filename }}</td>
+                <td>
+                    <form method="post" action="{{ url_for('delete_resume_route', resume_id=resume.id) }}" style="display:inline;">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                        <button class="btn btn-outline" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

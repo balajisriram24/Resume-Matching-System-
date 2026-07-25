@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+    <h2>Candidate Ranking</h2>
+    <table>
+        <thead><tr><th>Rank</th><th>Candidate</th><th>Match Score</th><th>ATS Score</th><th>Recommendation</th></tr></thead>
+        <tbody>
+            {% for row in ranking_rows %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ row.full_name }}</td>
+                <td>{{ row.match_score }}%</td>
+                <td>{{ row.ats_score }}%</td>
+                <td>{{ row.recommendation }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="cards-grid">
+    <div class="card stat-card"><h3>Total Candidates</h3><p>{{ metrics.total_candidates }}</p></div>
+    <div class="card stat-card"><h3>Total Resumes</h3><p>{{ metrics.total_resumes }}</p></div>
+    <div class="card stat-card"><h3>Total Jobs</h3><p>{{ metrics.total_jobs }}</p></div>
+    <div class="card stat-card"><h3>Top Candidate</h3><p>{{ metrics.top_candidate }}</p></div>
+    <div class="card stat-card"><h3>Average ATS</h3><p>{{ metrics.average_ats_score }}%</p></div>
+    <div class="card stat-card"><h3>Average Match</h3><p>{{ metrics.average_match_score }}%</p></div>
+</section>
+<section class="card">
+    <h3>Candidate List</h3>
+    <table>
+        <thead><tr><th>Name</th><th>Email</th><th>Skills</th><th>Actions</th></tr></thead>
+        <tbody>
+            {% for candidate in candidates %}
+            <tr>
+                <td>{{ candidate.full_name }}</td>
+                <td>{{ candidate.email }}</td>
+                <td>{{ candidate.skills }}</td>
+                <td><a href="{{ url_for('edit_candidate', candidate_id=candidate.id) }}">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

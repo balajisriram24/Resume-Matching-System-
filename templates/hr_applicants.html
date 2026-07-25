@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Applicants</p>
+            <h2>Applied candidates for {{ job.job_title }}</h2>
+            <p>Review candidates who have submitted applications for this role.</p>
+        </div>
+        <a class="btn btn-primary" href="{{ url_for('hr_dashboard') }}">Back to Dashboard</a>
+    </div>
+
+    {% if applications %}
+        <div class="stack-list">
+            {% for application in applications %}
+                <div class="list-item">
+                    <div>
+                        <strong>{{ application.full_name }}</strong>
+                        <p>{{ application.email }} • {{ application.phone }}</p>
+                        <p>Skills: {{ application.skills }}</p>
+                        <p>Experience: {{ application.experience }}</p>
+                        <small>Applied at: {{ application.applied_at }}</small>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <h3>No applicants yet</h3>
+            <p>Once candidates apply, they will appear here.</p>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

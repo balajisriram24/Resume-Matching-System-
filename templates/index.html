@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero-section">
+    <div class="hero-copy">
+        <p class="eyebrow">AI-POWERED HR OPERATIONS</p>
+        <h1>Modern resume matching for high-performing recruiting teams.</h1>
+        <p>Turn every application into a decision-ready pipeline with ATS scoring, skill-gap insights, and executive-grade reporting.</p>
+        <div class="actions">
+            <a class="btn btn-primary" href="{{ url_for('register') }}">Create Candidate Profile</a>
+            <a class="btn btn-secondary" href="#workflow">Explore Workflow</a>
+        </div>
+        <div class="hero-badges">
+            <span>PDF & DOCX Parsing</span>
+            <span>Smart Recommendations</span>
+            <span>Role-Based Dashboards</span>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="visual-card">
+            <div class="visual-topbar">
+                <span></span><span></span><span></span>
+            </div>
+            <div class="visual-panel">
+                <div class="panel-pill">ATS Score 87%</div>
+                <div class="panel-block">
+                    <h3>Top Match</h3>
+                    <p>Senior Python Developer</p>
+                </div>
+                <div class="panel-row">
+                    <div>
+                        <strong>91%</strong>
+                        <small>Match</small>
+                    </div>
+                    <div>
+                        <strong>6</strong>
+                        <small>Skills</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats-section" id="platform">
+    <div class="stat-card glass-card">
+        <h3>Total Resumes</h3>
+        <p>320+</p>
+    </div>
+    <div class="stat-card glass-card">
+        <h3>Jobs</h3>
+        <p>48</p>
+    </div>
+    <div class="stat-card glass-card">
+        <h3>ATS Score</h3>
+        <p>92%</p>
+    </div>
+    <div class="stat-card glass-card">
+        <h3>Candidates</h3>
+        <p>180</p>
+    </div>
+</section>
+
+<section class="feature-section">
+    <div class="section-heading">
+        <p class="eyebrow">PLATFORM CAPABILITIES</p>
+        <h2>Built for modern hiring teams.</h2>
+    </div>
+    <div class="feature-grid">
+        <article class="glass-card feature-card">
+            <h3>Resume Intelligence</h3>
+            <p>Extract candidate details automatically and compare them with job expectations in seconds.</p>
+        </article>
+        <article class="glass-card feature-card">
+            <h3>Smart Ranking</h3>
+            <p>Surface the best-fit applicants with clear match scores and actionable recommendations.</p>
+        </article>
+        <article class="glass-card feature-card">
+            <h3>Executive Reporting</h3>
+            <p>Share polished insights across admin, HR, and candidate workflows from one secure system.</p>
+        </article>
+    </div>
+</section>
+
+<section class="timeline-section" id="workflow">
+    <div class="section-heading">
+        <p class="eyebrow">HOW IT WORKS</p>
+        <h2>From intake to shortlist in four elegant steps.</h2>
+    </div>
+    <div class="timeline-list">
+        <div class="timeline-item">
+            <span>01</span>
+            <h3>Capture the role</h3>
+            <p>Create accurate job descriptions with required skills, experience, and business context.</p>
+        </div>
+        <div class="timeline-item">
+            <span>02</span>
+            <h3>Analyze resumes</h3>
+            <p>Upload PDF or DOCX files and let the system parse the content automatically.</p>
+        </div>
+        <div class="timeline-item">
+            <span>03</span>
+            <h3>Score and rank</h3>
+            <p>Generate ATS and match scores, identify strengths, and surface missing skills.</p>
+        </div>
+        <div class="timeline-item">
+            <span>04</span>
+            <h3>Act with confidence</h3>
+            <p>Shortlist, review, and export reports with a polished dashboard experience.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
